@@ -1,4 +1,4 @@
-# Copyright 2013-2023 Lawrence Livermore National Security, LLC and other
+# Copyright 2013-2024 Lawrence Livermore National Security, LLC and other
 # Spack Project Developers. See the top-level COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
@@ -17,5 +17,7 @@ class TestFail(Package):
     def install(self, spec, prefix):
         mkdirp(prefix.bin)
 
-    def test(self):
-        self.run_test("true", expected=["not in the output"])
+    def test_fails(self):
+        """trigger test failure"""
+        unknown = which("unknown-program")
+        unknown()

@@ -1,9 +1,7 @@
-# Copyright 2013-2023 Lawrence Livermore National Security, LLC and other
+# Copyright 2013-2024 Lawrence Livermore National Security, LLC and other
 # Spack Project Developers. See the top-level COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
-
-from six import string_types
 
 import spack.platforms
 from spack.package import *
@@ -102,7 +100,7 @@ class Multimethod(MultimethodBase):
 
         @when("target=" + target.name)
         def different_by_target(self):
-            if isinstance(self.spec.architecture.target, string_types):
+            if isinstance(self.spec.architecture.target, str):
                 return self.spec.architecture.target
             else:
                 return self.spec.architecture.target.name
